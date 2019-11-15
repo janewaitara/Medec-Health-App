@@ -6,9 +6,9 @@
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/sliderimageView"
-        android:layout_width="237.5dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="140dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,13 +53,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="73.3dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="72.7dp"
         android:layout_marginBottom="208dp"
         android:fontFamily="Poppins-Light"
         android:gravity="center_horizontal"
         android:letterSpacing="0.01"
         android:lineSpacingExtra="2sp"
-        android:text="Get list of best doctor nearby you"
+        android:text="@string/sliderDescription1"
         android:textAlignment="center"
         android:textColor="#333348"
         android:textSize="15sp"

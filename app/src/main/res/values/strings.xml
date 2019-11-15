@@ -6,7 +6,7 @@
     <string name="sliderHeading3">Book Diagnostic</string>
 
 <!--array of slider description-->
-    <string name="sliderDescription1">Get list of best doctor nearby you</string>
-    <string name="sliderDescription2">Book an appointment with a right doctor</string>
-    <string name="sliderDescription3">Search and book diagnostic test  </string>
+    <string name="sliderDescription1">Get list of best doctor\n nearby you</string>
+    <string name="sliderDescription2">Book an appointment with a \n right doctor</string>
+    <string name="sliderDescription3">Search and book diagnostic \n test  </string>
 </resources>

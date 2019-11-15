@@ -19,12 +19,22 @@ public class OnBoardingActivity extends AppCompatActivity {
     private LinearLayout mDotsLinearLayout;
     private TextView[] mBottomDots;
     private Button mNextButton;
+    private PrefManager prefManager;
 
     private int mCurrentPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Checking for first time launch - before calling setContentView()
+        prefManager = new PrefManager(this);
+        if (!prefManager.isFirstTimeLaunch()) {
+            launchHomeScreen();
+            finish();
+        }
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
         setContentView(R.layout.activity_on_boarding);
 
         mNextButton = (Button) findViewById(R.id.next_button);
@@ -43,6 +53,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (mCurrentPage == mBottomDots.length - 1){
                     Intent  intent = new Intent(OnBoardingActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -52,6 +63,14 @@ public class OnBoardingActivity extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    private void launchHomeScreen() {
+        prefManager.setFirstTimeLaunch(false);
+        startActivity(new Intent(OnBoardingActivity.this, MainActivity.class));
+        finish();
     }
 
     public void addBottomDots(int currentPosition){
@@ -85,7 +104,7 @@ public class OnBoardingActivity extends AppCompatActivity {
             mCurrentPage = position;
 
             if (position == mBottomDots.length - 1) {
-                mNextButton.setText("GOT IT");
+                mNextButton.setText("GET STARTED");
             } else {
                 mNextButton.setText("NEXT");
             }
