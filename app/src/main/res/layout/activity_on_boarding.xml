@@ -8,18 +8,6 @@
     tools:context=".OnBoardingActivity">
 
 
-    <Button
-        android:id="@+id/next_button"
-        android:layout_width="112.1dp"
-        android:layout_height="33.3dp"
-        android:gravity="center"
-        android:background="@drawable/onboardingbtn"
-        android:text="Next"
-        android:textColor="@color/btnTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/dotslinearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager" />
 
 
     <androidx.viewpager.widget.ViewPager
@@ -36,6 +24,19 @@
 
 <!--    app:layout_constraintHorizontal_bias="1.0"-->
 
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="112.1dp"
+        android:layout_height="33.3dp"
+        android:gravity="center"
+        android:background="@drawable/onboardingbtn"
+        android:text="Next"
+        android:textColor="@color/btnTextColor"
+        app:layout_constraintBottom_toTopOf="@+id/dotslinearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+
     <LinearLayout
         android:id="@+id/dotslinearLayout"
         android:layout_width="wrap_content"
@@ -44,5 +45,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/viewPager"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

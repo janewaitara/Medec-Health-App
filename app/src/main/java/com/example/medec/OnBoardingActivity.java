@@ -14,14 +14,14 @@ import android.widget.TextView;
 public class OnBoardingActivity extends AppCompatActivity {
 
     private ViewPager mSlideViewPager;
-
-    private SliderAdapter mSliderAdapter;
     private LinearLayout mDotsLinearLayout;
-    private TextView[] mBottomDots;
+    private SliderAdapter mSliderAdapter;
+
+    private TextView[] mBottomDots;//array to store the dots
     private Button mNextButton;
-    private PrefManager prefManager;
 
     private int mCurrentPage;
+    private PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +37,18 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_on_boarding);
 
-        mNextButton = (Button) findViewById(R.id.next_button);
 
-
-        mDotsLinearLayout =(LinearLayout) findViewById(R.id.dotslinearLayout);
         mSlideViewPager = (ViewPager) findViewById(R.id.viewPager);
+        mDotsLinearLayout =(LinearLayout) findViewById(R.id.dotslinearLayout);
+
 
         mSliderAdapter = new SliderAdapter(this);
-        mSlideViewPager.setAdapter(mSliderAdapter);
+        mSlideViewPager.setAdapter(mSliderAdapter); //adding our adapter to our viewPager
 
         addBottomDots(0);
         mSlideViewPager.addOnPageChangeListener(viewPagerListener);
 
+        mNextButton = (Button) findViewById(R.id.next_button);
         //OnClickListeners
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +72,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         startActivity(new Intent(OnBoardingActivity.this, MainActivity.class));
         finish();
     }
-
+    //count the number of items you will need
     public void addBottomDots(int currentPosition){
         mBottomDots = new TextView[mSliderAdapter.slides_headings.length];//gets the number of slides
         mDotsLinearLayout.removeAllViews();//prevents creation of so many dots
@@ -92,6 +92,7 @@ public class OnBoardingActivity extends AppCompatActivity {
 
     }
 
+    //to help us know the page we are on
     ViewPager.OnPageChangeListener viewPagerListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

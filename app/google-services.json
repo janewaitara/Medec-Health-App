@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "2707064774",
+    "firebase_url": "https://medec-67a2e.firebaseio.com",
+    "project_id": "medec-67a2e",
+    "storage_bucket": "medec-67a2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2707064774:android:b5b05c90875e1e10e9d4c7",
+        "android_client_info": {
+          "package_name": "com.example.medec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2707064774-4l2o7uv9r2kppk9sa3kvvt8927iskmk0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medec",
+            "certificate_hash": "a9cd918ce3d0abc452db01bb01929d3bdfcfd484"
+          }
+        },
+        {
+          "client_id": "2707064774-kerhnhrvkeaejbopui4e7dms167b38sk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkbVCW32ZEAH2mvlMMNmucA87DcVHaRzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2707064774-kerhnhrvkeaejbopui4e7dms167b38sk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

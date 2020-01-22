@@ -34,6 +34,7 @@ public class SliderAdapter extends PagerAdapter {
             R.string.sliderHeading2,
             R.string.sliderHeading3
     };
+    //array for descriptions
     public int[] slider_descriptions={
             R.string.sliderDescription1,
             R.string.sliderDescription2,

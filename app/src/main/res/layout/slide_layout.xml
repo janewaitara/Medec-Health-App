@@ -39,7 +39,7 @@
         android:fontFamily="Poppins-SemiBold"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="10.7sp"
-        android:text="Search Doctors"
+        android:text="@string/sliderHeading1"
         android:textAlignment="center"
         android:textColor="#333348"
         android:textSize="20sp"
