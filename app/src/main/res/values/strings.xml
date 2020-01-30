@@ -9,4 +9,10 @@
     <string name="sliderDescription1">Get list of best doctor\n nearby you</string>
     <string name="sliderDescription2">Book an appointment with a \n right doctor</string>
     <string name="sliderDescription3">Search and book diagnostic \n test  </string>
+
+
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">199580921226617</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb199580921226617</string>
+
 </resources>
