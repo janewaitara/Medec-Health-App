@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
@@ -17,10 +21,15 @@ public class MainActivity extends AppCompatActivity {
     public static FirebaseAuth.AuthStateListener mAuthListener;
     private static final int RC_SIGN_IN = 123;
 
+    Button loginButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -37,6 +46,22 @@ public class MainActivity extends AppCompatActivity {
 
         attachListener();
 
+
+
+        loginButton = findViewById(R.id.logout);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AuthUI.getInstance()
+                        .signOut(MainActivity.this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            public void onComplete(@NonNull Task<Void> task) {
+                                attachListener();
+                            }
+                        });
+            }
+        });
+        
     }
     private void signIn() {
 // Choose authentication providers
@@ -44,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
                 new AuthUI.IdpConfig.PhoneBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
-                new AuthUI.IdpConfig.FacebookBuilder().build());
+                new AuthUI.IdpConfig.FacebookBuilder().setPermissions(Arrays.asList("default", "email")).build());
+
+
 
 // Create and launch sign-in intent
         startActivityForResult(
