@@ -1,6 +1,27 @@
 package com.example.medec;
 
-public class DoctorsDetails {
+public class DoctorDetails {
+
+    private String id;
+    private String name;
+    private String doctorsTitle;
+    private String docCoursePursued;
+    private String emailAddress;
+    private String yearsOfExperience;
+    private String imageUrl;
+
+    public DoctorDetails() {}
+
+    public DoctorDetails(String name,String emailAddress,String docCoursePursued, String doctorsTitle,  String yearsOfExperience, String imageUrl) {
+        this.setId(id);
+        this.setName(name);
+        this.setEmailAddress(emailAddress);
+        this.setDocCoursePursued(docCoursePursued);
+        this.setDoctorsTitle(doctorsTitle);
+        this.setYearsOfExperience(yearsOfExperience);
+        this.setImageUrl(imageUrl);
+    }
+
     public String getId() {
         return id;
     }
@@ -25,12 +46,12 @@ public class DoctorsDetails {
         this.doctorsTitle = doctorsTitle;
     }
 
-    public String getEmailAdress() {
-        return emailAdress;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmailAdress(String emailAdress) {
-        this.emailAdress = emailAdress;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public String getYearsOfExperience() {
@@ -41,27 +62,19 @@ public class DoctorsDetails {
         this.yearsOfExperience = yearsOfExperience;
     }
 
-    public String getImsgeUrl() {
-        return imsgeUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImsgeUrl(String imsgeUrl) {
-        this.imsgeUrl = imsgeUrl;
+    public void setImageUrl(String imsgeUrl) {
+        this.imageUrl = imsgeUrl;
     }
 
-    private String id;
-    private String name;
-    private String doctorsTitle;
-    private String emailAdress;
-    private String yearsOfExperience;
-    private String imsgeUrl;
+    public String getDocCoursePursued() {
+        return docCoursePursued;
+    }
 
-    public DoctorsDetails(String id, String name, String doctorsTitle, String emailAdress, String yearsOfExperience, String imsgeUrl) {
-        this.id = id;
-        this.name = name;
-        this.doctorsTitle = doctorsTitle;
-        this.emailAdress = emailAdress;
-        this.yearsOfExperience = yearsOfExperience;
-        this.imsgeUrl = imsgeUrl;
+    public void setDocCoursePursued(String docCoursePursued) {
+        this.docCoursePursued = docCoursePursued;
     }
 }

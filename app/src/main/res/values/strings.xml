@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Medec</string>
-<!--array of slider headings-->
+    <!--array of slider headings-->
     <string name="sliderHeading1">Search for doctors</string>
     <string name="sliderHeading2">Book Appointment</string>
     <string name="sliderHeading3">Book Diagnostic</string>
 
-<!--array of slider description-->
+    <!--array of slider description-->
     <string name="sliderDescription1">Get list of best doctor\n nearby you</string>
     <string name="sliderDescription2">Book an appointment with a \n right doctor</string>
     <string name="sliderDescription3">Search and book diagnostic \n test  </string>
