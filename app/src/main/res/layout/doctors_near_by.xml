@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="165dp"
+        android:layout_height="170dp"
         android:paddingTop="8dp">
 
         <androidx.cardview.widget.CardView

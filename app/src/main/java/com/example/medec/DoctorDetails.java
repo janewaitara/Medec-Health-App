@@ -7,20 +7,22 @@ public class DoctorDetails {
     private String doctorsTitle;
     private String docCoursePursued;
     private String emailAddress;
+    private String doctorContact;
     private String yearsOfExperience;
     private String imageUrl;
-
-    public DoctorDetails() {}
-
-    public DoctorDetails(String name,String emailAddress,String docCoursePursued, String doctorsTitle,  String yearsOfExperience, String imageUrl) {
+    public DoctorDetails() {
+    }
+    public DoctorDetails(String name, String emailAddress, String doctorContact, String docCoursePursued, String doctorsTitle, String yearsOfExperience, String imageUrl) {
         this.setId(id);
         this.setName(name);
         this.setEmailAddress(emailAddress);
+        this.setDoctorContact(doctorContact);
         this.setDocCoursePursued(docCoursePursued);
         this.setDoctorsTitle(doctorsTitle);
         this.setYearsOfExperience(yearsOfExperience);
         this.setImageUrl(imageUrl);
     }
+
 
     public String getId() {
         return id;
@@ -53,6 +55,15 @@ public class DoctorDetails {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
+
+    public String getDoctorContact() {
+        return doctorContact;
+    }
+
+    public void setDoctorContact(String doctorContact) {
+        this.doctorContact = doctorContact;
+    }
+
 
     public String getYearsOfExperience() {
         return yearsOfExperience;

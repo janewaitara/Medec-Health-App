@@ -17,10 +17,11 @@ public class DoctorsProfileActivity extends AppCompatActivity {
 
     EditText txtDoctorName;
     EditText txtDoctorEmail;
+    EditText txtDoctorContact;
     EditText txtDocCoursePursued;
     EditText txtDoctorTitle;
     EditText txtDocYrOfExperince;
-    Button btnSaveProfile;
+    Button btnDoctorSaveProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +34,13 @@ public class DoctorsProfileActivity extends AppCompatActivity {
 
         txtDoctorName = (EditText) findViewById(R.id.edit_doctor_name);
         txtDoctorEmail = (EditText) findViewById(R.id.edit_doctor_email);
+        txtDoctorContact = (EditText) findViewById(R.id.edit_doctor_contact);
         txtDocCoursePursued = (EditText) findViewById(R.id.edit_doctor_course);
         txtDoctorTitle = (EditText) findViewById(R.id.edit_doctor_title);
         txtDocYrOfExperince = (EditText) findViewById(R.id.edit_yearsofexperince);
-        btnSaveProfile = (Button) findViewById(R.id.save_doctorProfile_button);
+        btnDoctorSaveProfile = (Button) findViewById(R.id.save_doctorProfile_button);
 
-        btnSaveProfile.setOnClickListener(new View.OnClickListener() {
+        btnDoctorSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveDoctorProfile();
@@ -50,11 +52,12 @@ public class DoctorsProfileActivity extends AppCompatActivity {
     private void saveDoctorProfile() {
         String doctorName = txtDoctorName.getText().toString();
         String doctorEmail = txtDoctorEmail.getText().toString();
+        String doctorContact = txtDoctorContact.getText().toString();
         String doctorCourse = txtDocCoursePursued.getText().toString();
         String doctorTitle = txtDoctorTitle.getText().toString();
         String yrOfExperience = txtDocYrOfExperince.getText().toString();
 
-        DoctorDetails doctorDetails = new DoctorDetails(doctorName, doctorEmail,doctorCourse, doctorTitle,yrOfExperience, " ");
+        DoctorDetails doctorDetails = new DoctorDetails(doctorName, doctorEmail,doctorContact,doctorCourse, doctorTitle,yrOfExperience, " ");
         mDatabaseReference.push().setValue(doctorDetails);
 
     }

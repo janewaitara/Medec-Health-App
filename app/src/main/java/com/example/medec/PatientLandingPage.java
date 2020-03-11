@@ -1,7 +1,6 @@
 package com.example.medec;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,18 +9,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class Landing extends AppCompatActivity {
+public class PatientLandingPage extends AppCompatActivity {
 
    ArrayList<DoctorDetails> mDoctorDetails;
     private FirebaseDatabase mFirebaseDatabase;
@@ -35,7 +32,7 @@ public class Landing extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing);
+        setContentView(R.layout.activity_patient_landing);
 
       /*  FirebaseUtil.openFbReference("doctorsDetails");
 
@@ -81,6 +78,27 @@ public class Landing extends AppCompatActivity {
       LinearLayoutManager doctorsLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
       rvDoctors.setLayoutManager(doctorsLayoutManager);
 
+
+
+       BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+       bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+           @Override
+           public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+               switch (item.getItemId()) {
+                   case R.id.navigation_home:
+                       startActivity(new Intent(PatientLandingPage.this, PatientLandingPage.class));
+                       break;
+                   case R.id.navigation_chat:
+                       Toast.makeText(PatientLandingPage.this, "Favorites", Toast.LENGTH_SHORT).show();
+                       break;
+                   case R.id.navigation_account:
+                      // startActivity(new Intent(PatientLandingPage.this, PatientAccountActivity.class));
+                       break;
+               }
+               return true;
+           }
+       });
+
     }
 
     @Override
@@ -93,7 +111,7 @@ public class Landing extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.docProfile:
-                Intent intent = new Intent(Landing.this, DoctorsProfileActivity.class);
+                Intent intent = new Intent(PatientLandingPage.this, DoctorsProfileActivity.class);
                 startActivity(intent);
         }
         return true;
