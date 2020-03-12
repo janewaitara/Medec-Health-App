@@ -92,7 +92,7 @@ public class PatientLandingPage extends AppCompatActivity {
                        Toast.makeText(PatientLandingPage.this, "Favorites", Toast.LENGTH_SHORT).show();
                        break;
                    case R.id.navigation_account:
-                      // startActivity(new Intent(PatientLandingPage.this, PatientAccountActivity.class));
+                       startActivity(new Intent(PatientLandingPage.this, PatientAccountActivity.class));
                        break;
                }
                return true;

@@ -1,4 +1,3 @@
-/*
 package com.example.medec;
 
 import androidx.annotation.NonNull;
@@ -101,4 +100,3 @@ public class PatientAccountActivity extends AppCompatActivity {
 
     }
 }
-*/
