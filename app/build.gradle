@@ -32,8 +32,15 @@ dependencies {
     //fireBase dependencies
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+    implementation 'com.google.firebase:firebase-database:18.0.1'
     implementation 'com.facebook.android:facebook-android-sdk:5.0.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    //design support library for androidx
 }
+
 
 apply plugin: 'com.google.gms.google-services'
