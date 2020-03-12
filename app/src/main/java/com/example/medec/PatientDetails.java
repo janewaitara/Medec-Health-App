@@ -1,4 +1,3 @@
-/*
 package com.example.medec;
 
 public class PatientDetails {
@@ -59,4 +58,3 @@ public class PatientDetails {
         this.imageUrl = imageUrl;
     }
 }
-*/

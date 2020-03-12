@@ -1,4 +1,3 @@
-/*
 package com.example.medec;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,4 +57,3 @@ private  DatabaseReference mDatabaseReference;
 
     }
 }
-*/
