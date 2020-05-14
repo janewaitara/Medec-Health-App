@@ -39,7 +39,7 @@ public class OnBoardingActivity extends AppCompatActivity {
 
 
         mSlideViewPager = (ViewPager) findViewById(R.id.viewPager);
-        mDotsLinearLayout =(LinearLayout) findViewById(R.id.dotslinearLayout);
+        mDotsLinearLayout =(LinearLayout) findViewById(R.id.dotsLinearLayout);
 
 
         mSliderAdapter = new SliderAdapter(this);
@@ -62,9 +62,6 @@ public class OnBoardingActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
 
     private void launchHomeScreen() {

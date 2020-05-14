@@ -42,13 +42,24 @@ public class SliderAdapter extends PagerAdapter {
 
     };
 
+
+    @Override
+    public int getCount() {
+        return slides_headings.length; //returns the number of slides via the headings
+    }
+
+    @Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view == (ConstraintLayout) object; //assigning the view to main object
+    }
+
     @NonNull
     @Override //required to add the slides effects and inflate the adapter
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slide_layout,container,false); //inflating the view with the slide layout
 
-        //intializing the image and text view in our slideLayout
+        //initializing the image and text view in our slideLayout
         ImageView slideImageView = (ImageView)view.findViewById(R.id.sliderimageView);
         TextView slideHeading = (TextView)view.findViewById(R.id.heading);
         TextView slideDescription = (TextView)view.findViewById(R.id.description);
@@ -63,15 +74,6 @@ public class SliderAdapter extends PagerAdapter {
         return view;
     }
 
-    @Override
-    public int getCount() {
-        return slides_headings.length; //returns the number os slides via the headings
-    }
-
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view == (ConstraintLayout) object;
-    }
 
     @Override //once on the last page, it stops the slider preventing errors
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
