@@ -59,5 +59,20 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public boolean validateEmail(){
+        String loginEmail = loginEmailTextInputLayout.getEditText().getText().toString().trim();
+
+        if (loginEmail.isEmpty()){
+            loginEmailTextInputLayout.setError("Email address can not be empty");
+            return false;
+        }else {
+            loginEmailTextInputLayout.setError(null);
+            // loginEmailTextInputLayout.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+
+
 
 }
