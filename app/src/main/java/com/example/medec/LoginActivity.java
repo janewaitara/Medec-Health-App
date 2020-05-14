@@ -43,6 +43,21 @@ public class LoginActivity extends AppCompatActivity {
         loginEmailTextInputLayout = findViewById(R.id.login_emailWrapper);
         loginPasswordTextInputLayout = findViewById(R.id.login_passwordWrapper);
     }
+    public boolean validatePassword(){
+        String loginPassword = loginPasswordTextInputLayout.getEditText().getText().toString().trim();
+
+        if (loginPassword.isEmpty()){
+            loginPasswordTextInputLayout.setError("Password can not be empty");
+            return false;
+        }else if (loginPassword.length()< PASSWORDLENGTH){
+            loginPasswordTextInputLayout.setError("password should be greater than 6");
+            return false;
+        }else {
+            loginPasswordTextInputLayout.setError(null);
+            // loginEmailTextInputLayout.setErrorEnabled(false);
+            return true;
+        }
+    }
 
 
 }
