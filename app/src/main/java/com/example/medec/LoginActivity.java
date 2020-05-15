@@ -103,6 +103,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         String input = "Email: " + loginEmailTextInputLayout.getEditText().getText().toString();
         input += "\n ";
         input += "Password: " + loginPasswordTextInputLayout.getEditText().getText().toString();
+        input += "\n ";
+        input += "UserRole: " + userRolesSpinner.getSelectedItem().toString();
 
         Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
 
