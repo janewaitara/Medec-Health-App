@@ -15,4 +15,9 @@
     <string name="facebook_application_id" translatable="false">199580921226617</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb199580921226617</string>
 
+    <string-array name="userRoles">
+        <item>Doctor</item>
+        <item>Patient</item>
+    </string-array>
+
 </resources>
