@@ -71,11 +71,10 @@ public class RegisterActivity extends AppCompatActivity  implements AdapterView.
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
-        /*if (mFirebaseAuth.getCurrentUser() == null) {
+        if (mFirebaseAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
-*/
     }
 
     public boolean validatePassword(){
@@ -109,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity  implements AdapterView.
 
     public void registerUser(View view) {
         String mFullName = fullName.getText().toString();
-        String mRegisterEmail = registerEmail.getText().toString();
+        String mRegisterEmail = registerEmail.getText().toString().trim();
         String mRegisterPassword = registerPassword.getText().toString();
         String mRegisterPhone = registerPhone.getText().toString();
 
