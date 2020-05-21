@@ -1,20 +1,25 @@
 package com.example.medec;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -29,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     private Spinner userRolesSpinner;
 
     private AutoCompleteTextView userRolesDropDown;
-    TextView registerText;
+    TextView registerText, forgotPassword;
     ProgressBar loginProgressBar;
 
 
@@ -43,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         loginPasswordTextInputLayout = findViewById(R.id.login_passwordWrapper);
         loginProgressBar = findViewById(R.id.login_progress_bar);
         registerText = findViewById(R.id.login_register);
+        forgotPassword = findViewById(R.id.forgot_password);
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
@@ -60,8 +66,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                 startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
             }
         });
-
-
 
         /**using autocompleteTextView
          * userRolesDropDown = findViewById(R.id.login_dropdown_userRoles);
@@ -156,8 +160,40 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
-
-
     }
 
+    public void resetPassword(View view) {
+
+        final EditText resetPasswordEmail = new EditText(view.getContext());
+
+        AlertDialog.Builder passwordResetDialog =new AlertDialog.Builder(view.getContext());
+        passwordResetDialog.setTitle("Reset Password");
+        passwordResetDialog.setMessage("Enter your email to receive Reset Link");
+        passwordResetDialog.setView(resetPasswordEmail);
+        passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //extract the email and send reset link
+                String email = resetPasswordEmail.getText().toString();
+                mFirebaseAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(LoginActivity.this, "Reset Link Sent Your Email", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(LoginActivity.this, "Error! Reset Link not sent " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+        passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //close the dialog
+            }
+        });
+        passwordResetDialog.create().show();
+    }
 }

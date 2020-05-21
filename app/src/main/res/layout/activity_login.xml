@@ -97,7 +97,7 @@
         android:onClick="loginUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_UserRoles_spinner" />
+        app:layout_constraintTop_toBottomOf="@id/login_UserRoles_spinner" />
 
     <TextView
         android:id="@+id/login_register"
@@ -108,7 +108,19 @@
         android:textColor="@color/loginregister_text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        app:layout_constraintTop_toBottomOf="@id/btn_login"
+        app:layout_goneMarginTop="16dp" />
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Forgot Password?"
+        android:onClick="resetPassword"
+        android:textColor="@color/loginregister_text_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_register"
         app:layout_goneMarginTop="16dp" />
 
     <androidx.core.widget.ContentLoadingProgressBar
@@ -122,7 +134,7 @@
         android:outlineSpotShadowColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_register"
+        app:layout_constraintTop_toBottomOf="@id/forgot_password"
         />
 
 
