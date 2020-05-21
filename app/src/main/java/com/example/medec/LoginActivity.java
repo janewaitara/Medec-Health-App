@@ -174,7 +174,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //extract the email and send reset link
-                String email = resetPasswordEmail.getText().toString();
+                String email = resetPasswordEmail.getText().toString().trim();
                 mFirebaseAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

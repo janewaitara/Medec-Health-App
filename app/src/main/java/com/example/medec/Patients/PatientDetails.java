@@ -1,4 +1,4 @@
-package com.example.medec;
+package com.example.medec.Patients;
 
 public class PatientDetails {
     public PatientDetails() {

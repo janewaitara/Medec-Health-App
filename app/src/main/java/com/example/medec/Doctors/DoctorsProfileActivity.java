@@ -1,4 +1,4 @@
-package com.example.medec;
+package com.example.medec.Doctors;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.medec.FirebaseUtil;
+import com.example.medec.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

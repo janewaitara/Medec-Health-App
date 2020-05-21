@@ -1,4 +1,4 @@
-package com.example.medec;
+package com.example.medec.Patients;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.medec.Doctors.DoctorDetails;
+import com.example.medec.Doctors.DoctorsAdapter;
+import com.example.medec.Doctors.DoctorsProfileActivity;
+import com.example.medec.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;

@@ -1,6 +1,6 @@
 package com.example.medec;
 
-import com.google.firebase.database.ChildEventListener;
+import com.example.medec.Doctors.DoctorDetails;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
