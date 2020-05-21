@@ -67,6 +67,13 @@ public class RegisterActivity extends AppCompatActivity  implements AdapterView.
         userRolesSpinner.setAdapter(userRolesSpinnerAdapter);
         userRolesSpinner.setOnItemSelectedListener(this);
 
+        registeredLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            }
+        });
+
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
