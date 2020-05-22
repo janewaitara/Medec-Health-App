@@ -18,17 +18,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.medec.LoginActivity.PASSWORDLENGTH;
 
 public class RegisterActivity extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
 
+    public static final String TAG = "TAG";
+    FirebaseFirestore mFirestore;
     public FirebaseAuth mFirebaseAuth;
     private TextInputLayout registerNameTextInputLayout;
     private TextInputLayout registerEmailTextInputLayout;
@@ -40,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity  implements AdapterView.
     Button registerButton;
     TextView registeredLogin;
     ProgressBar registerProgressBar;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity  implements AdapterView.
 
 
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirestore =  FirebaseFirestore.getInstance();
 
 
         if (mFirebaseAuth.getCurrentUser() != null) {
@@ -114,24 +125,10 @@ public class RegisterActivity extends AppCompatActivity  implements AdapterView.
     }
 
     public void registerUser(View view) {
-        String mFullName = fullName.getText().toString();
-        String mRegisterEmail = registerEmail.getText().toString().trim();
-        String mRegisterPassword = registerPassword.getText().toString();
-        String mRegisterPhone = registerPhone.getText().toString();
-
-
-        /*if (TextUtils.isEmpty(mRegisterEmail)) {
-            registerEmail.setError("Email is Required");
-            return;
-        }
-        if (TextUtils.isEmpty(mRegisterPassword)) {
-            registerPassword.setError("Email is Required");
-            return;
-        }
-        if (mRegisterPassword.length() < 6) {
-            registerPassword.setError("Password must >= 6 characters");
-            return;
-        }*/
+        final String mFullName = fullName.getText().toString();
+        final String mRegisterEmail = registerEmail.getText().toString().trim();
+        String mRegisterPassword = registerPassword.getText().toString().trim();
+        final String mRegisterPhone = registerPhone.getText().toString();
 
         if(!validateEmail()|!validatePassword()){
             return;
@@ -149,20 +146,71 @@ public class RegisterActivity extends AppCompatActivity  implements AdapterView.
                             // Sign in success, update UI with the signed-in user's information
 
                             Toast.makeText(RegisterActivity.this, "User Created Successfully", Toast.LENGTH_SHORT).show();
+
+                            userId = mFirebaseAuth.getCurrentUser().getUid();//getting the id of the current user
+
+                            if (userRolesSpinner.getSelectedItem().toString().equals("Doctor")) {
+                                addDoctorToFirestore(userId, mFullName, mRegisterEmail, mRegisterPhone);
+                            }else  if (userRolesSpinner.getSelectedItem().toString().equals("Patient")) {
+                                addPatientToFirestore(userId, mFullName, mRegisterEmail, mRegisterPhone);
+                            }
+
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            registerProgressBar.setVisibility(View.GONE);
+
+
                         } else {
                             // If sign in fails, display a message to the user.
 
                             Toast.makeText(RegisterActivity.this, "Authentication failed." + task.getException().getMessage(),
                                     Toast.LENGTH_SHORT).show();
+                            registerProgressBar.setVisibility(View.GONE);
 
                         }
-
-                        // ...
                     }
                 });
+    }
 
+    private void addDoctorToFirestore(final String userId, String fullName, String email, String phone) {
 
+        DocumentReference mDocumentReference = mFirestore.collection("doctors").document(userId);
+        Map<String, Object> userData  = new HashMap<>();
+        userData.put("fullName", fullName);
+        userData.put("email", email);
+        userData.put("phone", phone);
+        mDocumentReference.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "User profile is created for: " + userId);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Error adding document" + e.toString());
+            }
+        });
+    }
+
+    private void addPatientToFirestore(final String userId, String fullName, String email, String phone) {
+
+        DocumentReference mDocumentReference = mFirestore.collection("patients").document(userId);
+        Map<String, Object> userData  = new HashMap<>();
+        userData.put("fullName", fullName);
+        userData.put("email", email);
+        userData.put("phone", phone);
+        mDocumentReference.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "User profile is created for: " + userId);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Error adding document" + e.toString());
+            }
+        });
     }
 
     @Override
