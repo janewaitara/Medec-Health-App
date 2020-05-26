@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -27,6 +29,7 @@ public class LocationActivity extends AppCompatActivity {
     RecyclerView mCountyRecycler;
 
     private List<Object> mRecyclerViewItems ;
+    //Button btnCounty;
 
 
     @Override
@@ -37,12 +40,21 @@ public class LocationActivity extends AppCompatActivity {
         mSearchView = findViewById(R.id.searchView);
         mRecyclerViewItems = new ArrayList<>();
 
-        //initializeDisplayContent();
+       /* btnCounty = findViewById(R.id.btncounty);
+        btnCounty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addMenuItemsFromJson();
+            }
+        });*/
+
+        initializeDisplayContent();
 
         addMenuItemsFromJson();
 
+        Log.d("TAG", "RecyclerView Data:" + mRecyclerViewItems.toString() + "\n");
+
     }
-/*
     private void initializeDisplayContent() {
 
         mCountyRecycler = findViewById(R.id.county_recyclerView);
@@ -50,34 +62,40 @@ public class LocationActivity extends AppCompatActivity {
         LinearLayoutManager countiesLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         mCountyRecycler.setLayoutManager(countiesLayoutManager);
 
-        LocationRecyclerAdapter locationRecyclerAdapter = new LocationRecyclerAdapter(this);
+        LocationRecyclerAdapter locationRecyclerAdapter = new LocationRecyclerAdapter(this, mRecyclerViewItems);
         mCountyRecycler.setAdapter(locationRecyclerAdapter);
 
 
-    }*/
+    }
 
     public void addMenuItemsFromJson(){
+
+        StringBuilder builder = new StringBuilder();
         try {
             String jsonDataString = readJsonDataFromFile();
            /* TextView textView = findViewById(R.id.country);
             textView.setText(jsonDataString);*/ //confirming whether data has been successfully read
             JSONArray menuItemsJsonArray = new JSONArray(jsonDataString);
 
-            for (int i = 0; i<menuItemsJsonArray.length(); ++i){
+            for (int i = 0; i < menuItemsJsonArray.length(); i++){
 
                 JSONObject menuItemObject = menuItemsJsonArray.getJSONObject(i);
                 String menuItemsName = menuItemObject.getString("name");
                 int menuItemsCode = menuItemObject.getInt("code");
                 String menuItemsCapital = menuItemObject.getString("capital");
 
+              /*  //confirming whether all items are being read
+
+                Log.d("TAG", menuItemsName);
+
+                builder.append(menuItemsCode).append(": ").append(menuItemsName).append("\n");
+
                 TextView textView = findViewById(R.id.country);
-                textView.setText(menuItemsName);
-/*
+                textView.setText(builder);*/
+
 
                 CountyDetails countyDetails = new CountyDetails(menuItemsName, menuItemsCode, menuItemsCapital);
                 mRecyclerViewItems.add(countyDetails);
-*/
-
             }
 
         } catch (IOException | JSONException exception) {

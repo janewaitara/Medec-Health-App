@@ -1,6 +1,7 @@
 package com.example.medec;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class LocationRecyclerAdapter extends RecyclerView.Adapter<LocationRecyclerAdapter.LocationViewHolder> {
 
     private final Context mcontext;
     private final LayoutInflater mLayoutInflater;
+    private final List<Object> mCountyDetails;
 
-    public LocationRecyclerAdapter(Context mcontext) {
+    public LocationRecyclerAdapter(Context mcontext, List<Object> mCountyDetails) {
         this.mcontext = mcontext;
         mLayoutInflater = LayoutInflater.from(mcontext);
+
+        this.mCountyDetails = mCountyDetails;
     }
 
 
@@ -31,12 +37,16 @@ public class LocationRecyclerAdapter extends RecyclerView.Adapter<LocationRecycl
 
     @Override
     public void onBindViewHolder(@NonNull LocationViewHolder holder, int position) {
+        CountyDetails county = (CountyDetails) mCountyDetails.get(position);
+        holder.textCounty.setText(county.getName());
 
+
+        //Log.d("TAG", county.getName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mCountyDetails.size();
     }
 
     public class LocationViewHolder extends RecyclerView.ViewHolder {
@@ -48,6 +58,7 @@ public class LocationRecyclerAdapter extends RecyclerView.Adapter<LocationRecycl
             //reference to the textView
             textCounty = itemView.findViewById(R.id.text_county);
         }
+
     }
 
 }
