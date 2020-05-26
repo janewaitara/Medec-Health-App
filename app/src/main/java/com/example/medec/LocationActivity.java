@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.SearchView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -25,10 +26,12 @@ import java.util.List;
 
 public class LocationActivity extends AppCompatActivity {
 
-    SearchView mSearchView;
-    RecyclerView mCountyRecycler;
 
-    private List<Object> mRecyclerViewItems ;
+    RecyclerView mCountyRecycler;
+    EditText searchView;
+
+    private List<CountyDetails> mRecyclerViewItems ;
+    private LocationRecyclerAdapter locationRecyclerAdapter;
     //Button btnCounty;
 
 
@@ -37,8 +40,6 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        mSearchView = findViewById(R.id.searchView);
-        mRecyclerViewItems = new ArrayList<>();
 
        /* btnCounty = findViewById(R.id.btncounty);
         btnCounty.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +49,27 @@ public class LocationActivity extends AppCompatActivity {
             }
         });*/
 
+        mRecyclerViewItems = new ArrayList<>();
+        searchView = findViewById(R.id.searchView);
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                filter(s.toString());
+
+            }
+        });
+
         initializeDisplayContent();
 
         addMenuItemsFromJson();
@@ -55,6 +77,21 @@ public class LocationActivity extends AppCompatActivity {
         Log.d("TAG", "RecyclerView Data:" + mRecyclerViewItems.toString() + "\n");
 
     }
+
+    private void filter(String text) {
+
+        ArrayList<CountyDetails> filteredList = new ArrayList<>();
+
+        for (CountyDetails item : mRecyclerViewItems){
+            if (item.getName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+
+        locationRecyclerAdapter.filterList(filteredList);
+
+    }
+
     private void initializeDisplayContent() {
 
         mCountyRecycler = findViewById(R.id.county_recyclerView);
@@ -62,7 +99,7 @@ public class LocationActivity extends AppCompatActivity {
         LinearLayoutManager countiesLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         mCountyRecycler.setLayoutManager(countiesLayoutManager);
 
-        LocationRecyclerAdapter locationRecyclerAdapter = new LocationRecyclerAdapter(this, mRecyclerViewItems);
+        locationRecyclerAdapter = new LocationRecyclerAdapter(this, mRecyclerViewItems);
         mCountyRecycler.setAdapter(locationRecyclerAdapter);
 
 
