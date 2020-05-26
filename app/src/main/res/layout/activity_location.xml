@@ -33,10 +33,20 @@
         app:layout_constraintTop_toBottomOf="@+id/view"
         />
 
+       <TextView
+            android:id="@+id/country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Kenya"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/searchView"/>
 
 
 
-    <androidx.cardview.widget.CardView
+
+   <!-- <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -44,12 +54,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchView">
-     <!--   <TextView
+     &lt;!&ndash;   <TextView
             android:id="@+id/country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Kenya"/>-->
+            android:text="Kenya"/>&ndash;&gt;
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/county_recyclerView"
@@ -58,7 +68,7 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/location_counties_recyclerview"/>
 
-    </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

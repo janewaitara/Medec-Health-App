@@ -6,8 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,10 +37,12 @@ public class LocationActivity extends AppCompatActivity {
         mSearchView = findViewById(R.id.searchView);
         mRecyclerViewItems = new ArrayList<>();
 
-        initializeDisplayContent();
+        //initializeDisplayContent();
+
+        addMenuItemsFromJson();
 
     }
-
+/*
     private void initializeDisplayContent() {
 
         mCountyRecycler = findViewById(R.id.county_recyclerView);
@@ -47,6 +54,35 @@ public class LocationActivity extends AppCompatActivity {
         mCountyRecycler.setAdapter(locationRecyclerAdapter);
 
 
+    }*/
+
+    public void addMenuItemsFromJson(){
+        try {
+            String jsonDataString = readJsonDataFromFile();
+           /* TextView textView = findViewById(R.id.country);
+            textView.setText(jsonDataString);*/ //confirming whether data has been successfully read
+            JSONArray menuItemsJsonArray = new JSONArray(jsonDataString);
+
+            for (int i = 0; i<menuItemsJsonArray.length(); ++i){
+
+                JSONObject menuItemObject = menuItemsJsonArray.getJSONObject(i);
+                String menuItemsName = menuItemObject.getString("name");
+                int menuItemsCode = menuItemObject.getInt("code");
+                String menuItemsCapital = menuItemObject.getString("capital");
+
+                TextView textView = findViewById(R.id.country);
+                textView.setText(menuItemsName);
+/*
+
+                CountyDetails countyDetails = new CountyDetails(menuItemsName, menuItemsCode, menuItemsCapital);
+                mRecyclerViewItems.add(countyDetails);
+*/
+
+            }
+
+        } catch (IOException | JSONException exception) {
+            Log.e(LocationActivity.class.getName(), "Unable to parse the JSON file.",exception);
+        }
     }
 
     public String readJsonDataFromFile() throws IOException{
@@ -73,5 +109,7 @@ public class LocationActivity extends AppCompatActivity {
         return new String(builder);
 
     }
+
+
 
 }
