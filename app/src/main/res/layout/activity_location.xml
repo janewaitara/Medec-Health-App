@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C1C1C1"
+    android:background="#ECECEC"
     tools:context=".LocationActivity">
 
 
@@ -19,13 +19,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
     </View>
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
+        android:paddingStart="30dp"
+        android:text="Select your county"
+        app:layout_constraintBottom_toBottomOf="@id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view"
+        app:layout_constraintVertical_bias="0.32" />
+
     <EditText
         android:id="@+id/searchView"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:iconifiedByDefault="false"
         android:padding="10dp"
-        android:hint="Search Location here"
+        android:textSize="15sp"
+        android:hint="  Search Location here"
+        android:textColorHint="#D4D4D4"
         android:drawableLeft="@drawable/search_icon"
         android:queryBackground="@android:color/transparent"
         android:background="@drawable/search_view"
@@ -56,9 +72,12 @@
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintTop_toBottomOf="@id/btncounty"/>-->
 
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.7"
         android:layout_marginTop="100dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
